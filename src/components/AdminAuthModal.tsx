@@ -74,8 +74,8 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
             </button>
           )}
 
-          <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center p-2 backdrop-blur-md ring-2 ring-yellow-400/40 shadow-inner mb-3">
-            <USMSLogo className="w-12 h-12" />
+          <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center p-1.5 backdrop-blur-md ring-1 ring-yellow-400/40 shadow-inner mb-2.5">
+            <USMSLogo className="w-6 h-6" />
           </div>
 
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-yellow-400/20 text-yellow-300 text-[11px] font-bold tracking-wider uppercase border border-yellow-400/30 mb-1.5">
@@ -83,7 +83,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
             <span>USMS Security Gateway</span>
           </div>
 
-          <h3 className="text-lg font-bold text-white tracking-tight">
+          <h3 className="text-base font-bold text-white tracking-tight">
             {title}
           </h3>
           <p className="text-xs text-blue-200 mt-1 max-w-xs leading-relaxed">
@@ -109,7 +109,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
 
           <div>
             <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
-              Master Admin PIN / Password
+              Master Admin PIN
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">

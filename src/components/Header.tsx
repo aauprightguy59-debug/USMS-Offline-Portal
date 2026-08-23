@@ -31,9 +31,7 @@ export const Header: React.FC<HeaderProps> = ({
   const { schoolProfile, isAdminAuthenticated, adminLogout, setActiveTab } = useSchool();
 
   const handleLogout = () => {
-    if (window.confirm('Lock Master Administrator Session and return to Master Login?')) {
-      adminLogout();
-    }
+    adminLogout();
   };
 
   return (
@@ -52,8 +50,8 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-3 min-w-0">
           {/* USMS Logo Top Left Header */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 flex items-center justify-center p-1.5 shadow-sm ring-1 ring-blue-500/30">
-              <USMSLogo className="w-7 h-7" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 flex items-center justify-center p-1 shadow-sm ring-1 ring-blue-500/30">
+              <USMSLogo className="w-5 h-5" />
             </div>
             <div className="hidden sm:flex flex-col">
               <span className="text-[10px] font-extrabold tracking-widest text-blue-600 dark:text-blue-400 uppercase leading-tight font-mono">
@@ -85,25 +83,27 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center gap-2 sm:gap-3">
         
         {/* Master Admin Profile & Lock Session Button */}
-        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-xl px-2 sm:px-3 py-1 text-xs">
+        <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-xl px-2.5 sm:px-3 py-1 text-xs">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse hidden sm:block" />
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
           <div className="hidden sm:flex flex-col text-left leading-tight">
             <span className="text-[10px] font-bold text-slate-900 dark:text-white uppercase">
               {schoolProfile.adminConfig?.username || 'admin'}
             </span>
-            <span className="text-[9px] text-slate-500 dark:text-slate-400 font-medium">
-              Master Privilege
+            <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold">
+              Master Admin
             </span>
           </div>
 
           <button
+            id="btn-header-logout"
+            type="button"
             onClick={handleLogout}
             title="Lock Master Administrator Session and return to Login"
-            className="ml-1 sm:ml-2 p-1 text-slate-500 hover:text-red-600 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition cursor-pointer flex items-center gap-1 text-[11px] font-bold"
+            className="ml-1 sm:ml-2 px-2.5 py-1 text-rose-600 dark:text-rose-400 hover:text-white hover:bg-rose-600 dark:hover:bg-rose-600 active:scale-95 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 text-xs font-bold border border-rose-200 dark:border-rose-900/40 shadow-xs"
           >
             <LogOut className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">Lock / Exit</span>
+            <span>Logout</span>
           </button>
         </div>
 

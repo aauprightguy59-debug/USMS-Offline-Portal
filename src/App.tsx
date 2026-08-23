@@ -24,8 +24,7 @@ import { AdminAuthModal } from './components/AdminAuthModal';
 import { Student, Staff, PaymentVoucher } from './types';
 
 const MainApp: React.FC = () => {
-  const { exportDatabaseJSON, isAdminAuthenticated, adminLogout } = useSchool();
-  const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const { exportDatabaseJSON, isAdminAuthenticated, adminLogout, activeTab, setActiveTab } = useSchool();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Admin Security Auth Modal

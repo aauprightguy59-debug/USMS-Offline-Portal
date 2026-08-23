@@ -55,22 +55,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   const handleLogout = () => {
-    if (window.confirm('Lock Master Administrator Session and return to Login?')) {
-      adminLogout();
-    }
+    if (onCloseMobile) onCloseMobile();
+    adminLogout();
   };
 
   const sidebarContent = (
     <aside className="w-64 bg-slate-900 text-white flex flex-col h-full border-r border-slate-800 flex-shrink-0 select-none">
       
       {/* Brand Header with USMS Logo */}
-      <div className="p-4 border-b border-slate-800 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-900 to-indigo-950 flex items-center justify-center p-1.5 shadow-inner ring-1 ring-blue-400/40">
-            <USMSLogo className="w-7 h-7" />
+      <div className="p-3.5 border-b border-slate-800 flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-900 to-indigo-950 flex items-center justify-center p-1 shadow-inner ring-1 ring-blue-400/40">
+            <USMSLogo className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="font-extrabold text-base tracking-tight text-white flex items-center gap-1.5 leading-none">
+            <h1 className="font-extrabold text-sm tracking-tight text-white flex items-center gap-1.5 leading-none">
               USMS
               <span className="text-[9px] px-1.5 py-0.5 bg-yellow-400/20 text-yellow-300 font-bold rounded border border-yellow-400/30">
                 UNIVERSAL
@@ -152,6 +151,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </button>
           );
         })}
+
+        {/* Dedicated Admin Logout Button */}
+        <div className="pt-2 border-t border-slate-800/80 mt-2">
+          <button
+            type="button"
+            id="sidebar-btn-logout"
+            onClick={handleLogout}
+            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold text-rose-300 hover:text-rose-100 hover:bg-rose-950/40 border border-rose-900/30 transition-colors cursor-pointer"
+          >
+            <LogOut className="w-4 h-4 text-rose-400" />
+            <span>Lock / Logout</span>
+          </button>
+        </div>
       </nav>
 
       {/* Bottom Status & Official Developer Credits */}

@@ -74,11 +74,11 @@ export const Footer: React.FC<{ onOpenBackup: () => void }> = ({ onOpenBackup })
 
         <div className="border-t border-slate-800/80 mt-6 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
           <div>
-            &copy; {new Date().getFullYear()} Universal School Management System (USMS). All rights reserved.
+            Universal School Management System (USMS) &bull; Standalone Edition &copy; 2026 JADSL ICT Unit Community Centre, Gboko &bull; Tel: 070677978 &bull; WhatsApp: 08071119766
           </div>
-          <div className="flex items-center gap-1 text-slate-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-            <span>Encrypted Local Storage Engine</span>
+          <div className="flex items-center gap-1 text-emerald-400 font-medium">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Protected by Master Admin Security</span>
           </div>
         </div>
       </div>

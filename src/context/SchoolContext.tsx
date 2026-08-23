@@ -278,8 +278,10 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const adminLogout = () => {
     setIsAdminAuthenticated(false);
+    setActiveTab('dashboard');
     try {
       sessionStorage.removeItem(STORAGE_KEYS.ADMIN_AUTH);
+      localStorage.removeItem('usms_admin_remember');
     } catch {}
   };
 

@@ -149,12 +149,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </button>
 
           <button
-            onClick={() => {
-              if (window.confirm('Lock Master Administrator Session?')) {
-                adminLogout();
-              }
-            }}
-            className="px-3.5 py-2 bg-red-600/80 hover:bg-red-500 text-white rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 shadow-sm"
+            id="btn-dashboard-lock-session"
+            type="button"
+            onClick={() => adminLogout()}
+            className="px-3.5 py-2 bg-rose-600 hover:bg-rose-500 active:scale-95 text-white rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 shadow-sm"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span>Lock Session</span>

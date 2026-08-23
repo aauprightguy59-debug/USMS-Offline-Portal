@@ -25,7 +25,8 @@ import {
   Eye,
   EyeOff,
   AlertTriangle,
-  FileText
+  FileText,
+  LogOut
 } from 'lucide-react';
 import { USMSLogo } from './USMSLogo';
 
@@ -666,6 +667,21 @@ export const SettingsView: React.FC = () => {
             </div>
           </div>
         </form>
+
+        <div className="pt-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+          <div className="text-xs text-slate-500 dark:text-slate-400">
+            Active Session: <strong className="text-slate-800 dark:text-slate-200">{adminUsername}</strong> (Master Privilege)
+          </div>
+          <button
+            id="btn-settings-logout-session"
+            type="button"
+            onClick={() => adminLogout()}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 hover:bg-rose-600 hover:text-white dark:hover:bg-rose-600 dark:hover:text-white rounded-lg text-xs font-bold border border-rose-200 dark:border-rose-800 transition-colors cursor-pointer active:scale-95"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            <span>Lock / Logout Admin Session</span>
+          </button>
+        </div>
       </div>
 
       {/* ========================================================================= */}
