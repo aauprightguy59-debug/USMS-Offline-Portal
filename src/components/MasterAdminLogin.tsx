@@ -235,7 +235,7 @@ export const MasterAdminLogin: React.FC<MasterAdminLoginProps> = ({ onLoginSucce
             Developed by: <span className="text-white font-bold">JADSL ICT Unit Community Centre, Gboko</span>
           </p>
           <p className="text-[11px] text-slate-400 leading-relaxed">
-            Universal School Management System (USMS) &bull; Standalone Edition &copy; 2026 JADSL ICT Unit Community Centre, Gboko &bull; Tel: <a href="tel:070677978" className="text-blue-400 hover:underline font-mono">070677978</a> &bull; WhatsApp: <a href="https://wa.me/2348071119766" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline font-mono">08071119766</a>
+            Universal School Management System (USMS) &bull; Standalone Edition &copy; 2026 JADSL ICT Unit Community Centre, Gboko &bull; Tel: <a href="tel:07067797854" className="text-blue-400 hover:underline font-mono">07067797854</a> &bull; WhatsApp: <a href="https://wa.me/2348071119766" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline font-mono">08071119766</a>
           </p>
         </div>
       </footer>

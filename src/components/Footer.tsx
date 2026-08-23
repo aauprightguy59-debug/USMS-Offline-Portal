@@ -52,11 +52,11 @@ export const Footer: React.FC<{ onOpenBackup: () => void }> = ({ onOpenBackup })
             </p>
             <div className="flex flex-wrap md:justify-end items-center gap-3 pt-1 text-[11px]">
               <a
-                href="tel:070677978"
+                href="tel:07067797854"
                 className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-medium transition"
               >
                 <Phone className="w-3 h-3" />
-                <span>070677978</span>
+                <span>07067797854</span>
               </a>
               <a
                 href="https://wa.me/2348071119766"
@@ -74,7 +74,7 @@ export const Footer: React.FC<{ onOpenBackup: () => void }> = ({ onOpenBackup })
 
         <div className="border-t border-slate-800/80 mt-6 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
           <div>
-            Universal School Management System (USMS) &bull; Standalone Edition &copy; 2026 JADSL ICT Unit Community Centre, Gboko &bull; Tel: 070677978 &bull; WhatsApp: 08071119766
+            Universal School Management System (USMS) &bull; Standalone Edition &copy; 2026 JADSL ICT Unit Community Centre, Gboko &bull; Tel: 07067797854 &bull; WhatsApp: 08071119766
           </div>
           <div className="flex items-center gap-1 text-emerald-400 font-medium">
             <ShieldCheck className="w-3.5 h-3.5" />

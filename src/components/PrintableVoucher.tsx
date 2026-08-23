@@ -173,7 +173,7 @@ export const PrintableVoucher: React.FC<PrintableVoucherProps> = ({ voucher, onC
         {/* Tiny System Credit Footnote */}
         <div className="mt-3 pt-1 border-t border-slate-200 text-[8px] text-slate-400 flex items-center justify-between">
           <span>Universal School Management System (USMS)</span>
-          <span>Company Credit: JADSL ICT Unit Community Centre, Gboko (070677978)</span>
+          <span>Company Credit: JADSL ICT Unit Community Centre, Gboko (07067797854)</span>
         </div>
       </div>
     );

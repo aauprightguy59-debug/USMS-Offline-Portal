@@ -572,7 +572,7 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const fullBackup = {
       version: 'USMS-2.6',
       exportedAt: new Date().toISOString(),
-      companyCredit: 'JADSL ICT Unit Community Centre, Gboko. Phone: 070677978, WhatsApp: 08071119766',
+      companyCredit: 'JADSL ICT Unit Community Centre, Gboko. Phone: 07067797854, WhatsApp: 08071119766',
       schoolProfile,
       classes,
       students,

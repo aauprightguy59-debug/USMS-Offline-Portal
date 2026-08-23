@@ -350,7 +350,7 @@ export const PrintableReportCard: React.FC<PrintableReportCardProps> = ({
           <strong>Grading Key:</strong> A1 (75-100% Distinction), B2 (70-74% Very Good), B3 (65-69% Good), C4-C6 (50-64% Credit), D7-E8 (40-49% Pass), F9 (0-39% Fail)
         </div>
         <div className="text-right">
-          USMS &bull; Software Credit: <strong>JADSL ICT Unit Community Centre, Gboko (070677978)</strong>
+          USMS &bull; Software Credit: <strong>JADSL ICT Unit Community Centre, Gboko (07067797854)</strong>
         </div>
       </div>
 

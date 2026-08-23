@@ -188,7 +188,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             JADSL ICT Unit Community Centre
           </p>
           <p className="text-[9px] text-slate-400 mt-0.5">
-            Gboko &bull; Tel: 070677978 &bull; WA: 08071119766
+            Gboko &bull; Tel: 07067797854 &bull; WA: 08071119766
           </p>
         </div>
       </div>

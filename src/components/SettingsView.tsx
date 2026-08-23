@@ -374,7 +374,7 @@ export const SettingsView: React.FC = () => {
                     type="text"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
-                    placeholder="e.g. 070677978, 08071119766"
+                    placeholder="e.g. 07067797854, 08071119766"
                     className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white text-xs"
                   />
                 </div>
