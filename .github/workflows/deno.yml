@@ -4,13 +4,15 @@ on:
   push:
     branches: [ main ]
 
+# 👇 1. Move permissions to the top level here
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
