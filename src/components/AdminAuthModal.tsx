@@ -43,12 +43,12 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
         onSuccess();
       }, 400);
     } else {
-      setError('Incorrect Admin PIN. Default PIN is 1234');
+      setError('Incorrect Master Admin PIN. Access Denied.');
     }
   };
 
   const handleQuickDigit = (digit: string) => {
-    if (pin.length < 8) {
+    if (pin.length < 16) {
       const nextPin = pin + digit;
       setPin(nextPin);
       setError('');
@@ -122,7 +122,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
                   setPin(e.target.value);
                   setError('');
                 }}
-                placeholder="Enter 4-digit PIN (Default: 1234)"
+                placeholder="Enter Master Admin PIN"
                 autoFocus
                 className="w-full pl-10 pr-10 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-base tracking-widest font-mono text-center font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition shadow-sm"
               />

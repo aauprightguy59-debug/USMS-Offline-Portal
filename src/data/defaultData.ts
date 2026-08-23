@@ -153,9 +153,9 @@ export const DEFAULT_SCHOOL_PROFILE: SchoolProfile = {
   isConfigured: true,
   adminConfig: {
     username: 'admin',
-    pin: '1234',
-    securityQuestion: 'What is the default admin PIN?',
-    securityAnswer: '1234',
+    pin: '12345678',
+    securityQuestion: 'Master Security Verification',
+    securityAnswer: '12345678',
     isPinSet: false
   }
 };

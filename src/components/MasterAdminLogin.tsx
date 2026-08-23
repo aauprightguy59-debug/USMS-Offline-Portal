@@ -56,18 +56,12 @@ export const MasterAdminLogin: React.FC<MasterAdminLoginProps> = ({ onLoginSucce
         if (onLoginSuccess) onLoginSuccess();
       }, 500);
     } else {
-      setError('Access Denied: Invalid Master PIN or Username. (Default: admin / 1234)');
+      setError('Access Denied: Invalid Master PIN or Username. Please check your credentials.');
     }
   };
 
-  const handleAutoFill = () => {
-    setUsername('admin');
-    setPin('1234');
-    setError('');
-  };
-
   const handleQuickDigit = (digit: string) => {
-    if (pin.length < 8) {
+    if (pin.length < 16) {
       setPin(prev => prev + digit);
       setError('');
     }
@@ -256,7 +250,10 @@ export const MasterAdminLogin: React.FC<MasterAdminLoginProps> = ({ onLoginSucce
                     <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
                       Master Administrator PIN
                     </label>
-                    <span className="text-[11px] text-blue-400 font-mono">Default PIN: 1234</span>
+                    <span className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
+                      <Lock className="w-3 h-3 text-slate-400" />
+                      Confidential
+                    </span>
                   </div>
                   
                   <div className="relative">
@@ -329,16 +326,6 @@ export const MasterAdminLogin: React.FC<MasterAdminLoginProps> = ({ onLoginSucce
                     <KeyRound className="w-4 h-4 text-yellow-300" />
                     <span>Login as Master Administrator</span>
                     <ArrowRight className="w-4 h-4 ml-1" />
-                  </button>
-
-                  {/* One-Click Quick Credential Helper */}
-                  <button
-                    type="button"
-                    onClick={handleAutoFill}
-                    className="w-full py-2 bg-slate-800/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl font-semibold text-xs border border-slate-700/60 transition flex items-center justify-center gap-1.5 cursor-pointer"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Auto-Fill Master Credentials (admin / 1234)</span>
                   </button>
                 </div>
 

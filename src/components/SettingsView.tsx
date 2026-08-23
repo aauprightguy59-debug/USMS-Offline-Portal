@@ -632,7 +632,7 @@ export const SettingsView: React.FC = () => {
                 type={showPin ? 'text' : 'password'}
                 value={newPin}
                 onChange={(e) => setNewPin(e.target.value)}
-                placeholder="4-digit PIN"
+                placeholder="Enter new PIN"
                 className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-mono font-bold text-slate-900 dark:text-white tracking-widest"
               />
               <button
