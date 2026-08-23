@@ -1,0 +1,6 @@
+{
+  "name": "Universal School Management System (USMS)",
+  "description": "Standalone offline-ready Universal School Management System (USMS) featuring Master Admin PIN security, multi-term weekly timetable designer & scheduling, automated student admission generation, continuous assessment and terminal examination computation, printable student report cards, staff payment vouchers, performance analytics, and Excel import/export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
