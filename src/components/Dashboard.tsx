@@ -28,7 +28,7 @@ import {
   Eye
 } from 'lucide-react';
 import { computePerformanceAnalytics, formatCurrency } from '../utils/computations';
-import { PaymentVoucher, Student, Staff } from '../types';
+import { PaymentVoucher, Student, Staff, ACADEMIC_SESSIONS, TermType } from '../types';
 
 interface DashboardProps {
   setActiveTab: (tab: string) => void;
@@ -56,7 +56,9 @@ export const Dashboard: React.FC<DashboardProps> = ({
     paymentVouchers,
     timetables,
     exportDatabaseJSON,
-    adminLogout
+    adminLogout,
+    setActiveSession,
+    setActiveTerm
   } = useSchool();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -137,6 +139,44 @@ export const Dashboard: React.FC<DashboardProps> = ({
             <p className="text-xs text-slate-300 mt-1 max-w-xl">
               Logged in as <strong className="text-yellow-300 font-mono">{schoolProfile.adminConfig?.username || 'admin'}</strong> &bull; Complete administrative authority over student enrollment, staff payroll, timetable scheduling, continuous assessments, and financial vouchers.
             </p>
+
+            {/* Quick Session & Term Working Selector */}
+            <div className="flex items-center gap-2 mt-3 pt-2.5 border-t border-slate-800/80 flex-wrap">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5 text-blue-400" />
+                Working Session:
+              </span>
+              <select
+                id="select-dashboard-session"
+                value={schoolProfile.session}
+                onChange={(e) => setActiveSession(e.target.value)}
+                className="bg-slate-800/90 text-white font-bold text-xs rounded-lg px-2.5 py-1 border border-slate-700 focus:ring-2 focus:ring-blue-400 focus:outline-none cursor-pointer"
+                title="Select Academic Session (2024/2025 to 2050/2051)"
+              >
+                {ACADEMIC_SESSIONS.map((sess) => (
+                  <option key={sess} value={sess} className="bg-slate-900 text-white">
+                    {sess} Academic Session
+                  </option>
+                ))}
+              </select>
+
+              <span className="text-slate-600 hidden sm:inline">&bull;</span>
+
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden sm:inline">
+                Term:
+              </span>
+              <select
+                id="select-dashboard-term"
+                value={schoolProfile.currentTerm}
+                onChange={(e) => setActiveTerm(e.target.value as TermType)}
+                className="bg-slate-800/90 text-white font-semibold text-xs rounded-lg px-2.5 py-1 border border-slate-700 focus:ring-2 focus:ring-blue-400 focus:outline-none cursor-pointer"
+                title="Select Working Term"
+              >
+                <option value="1st Term">1st Term</option>
+                <option value="2nd Term">2nd Term</option>
+                <option value="3rd Term">3rd Term</option>
+              </select>
+            </div>
           </div>
         </div>
 

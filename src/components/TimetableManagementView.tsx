@@ -29,7 +29,8 @@ import {
   DayOfWeek,
   TimetableSlot,
   TimetablePeriod,
-  ClassTimetable
+  ClassTimetable,
+  ACADEMIC_SESSIONS
 } from '../types';
 import { DEFAULT_PERIODS } from '../data/defaultData';
 import * as XLSX from 'xlsx';
@@ -406,13 +407,15 @@ export const TimetableManagementView: React.FC = () => {
 
           <div className="flex items-center gap-2">
             <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Session:</span>
-            <input
-              type="text"
+            <select
               value={selectedSession}
               onChange={(e) => setSelectedSession(e.target.value)}
-              placeholder="e.g. 2024/2025"
-              className="w-24 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold px-2 py-1.5 text-slate-900 dark:text-white text-center focus:ring-1 focus:ring-blue-500"
-            />
+              className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold px-2.5 py-1.5 text-slate-900 dark:text-white focus:ring-1 focus:ring-blue-500 cursor-pointer"
+            >
+              {ACADEMIC_SESSIONS.map((sess) => (
+                <option key={sess} value={sess}>{sess}</option>
+              ))}
+            </select>
           </div>
 
           {currentTimetable && (

@@ -2,6 +2,12 @@ export type SchoolType = 'nursery_primary' | 'secondary' | 'combined' | 'tertiar
 
 export type TermType = '1st Term' | '2nd Term' | '3rd Term';
 
+// Academic Sessions range from 2024/2025 through 2050/2051
+export const ACADEMIC_SESSIONS: string[] = Array.from({ length: 27 }, (_, i) => {
+  const startYear = 2024 + i;
+  return `${startYear}/${startYear + 1}`;
+});
+
 export interface GradeConfig {
   grade: string;
   minScore: number;

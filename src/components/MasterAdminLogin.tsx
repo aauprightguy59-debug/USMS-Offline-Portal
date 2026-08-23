@@ -77,10 +77,10 @@ export const MasterAdminLogin: React.FC<MasterAdminLoginProps> = ({ onLoginSucce
       <div className="relative z-10 w-full max-w-md my-auto">
         <div className="bg-slate-900/95 border border-slate-800 rounded-2xl shadow-2xl p-6 sm:p-8 backdrop-blur-xl">
           
-          {/* Header with Small Logo Icon */}
+          {/* Header with Prominent Logo Icon */}
           <div className="flex flex-col items-center text-center pb-5 border-b border-slate-800/80">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-950 flex items-center justify-center p-1.5 shadow-md ring-1 ring-blue-400/30 mb-3">
-              <USMSLogo className="w-6 h-6" />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-950 flex items-center justify-center p-2.5 sm:p-3 shadow-xl ring-2 ring-blue-400/30 mb-3.5 transform transition-transform hover:scale-105">
+              <USMSLogo className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
             </div>
             
             <h1 className="text-lg sm:text-xl font-extrabold text-white tracking-tight leading-snug">

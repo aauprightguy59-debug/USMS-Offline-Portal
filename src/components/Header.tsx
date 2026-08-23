@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSchool } from '../context/SchoolContext';
 import { USMSLogo } from './USMSLogo';
+import { ACADEMIC_SESSIONS, TermType } from '../types';
 import {
   Menu,
   Upload,
@@ -28,7 +29,14 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleMobileMenu,
   onOpenAdminAuth
 }) => {
-  const { schoolProfile, isAdminAuthenticated, adminLogout, setActiveTab } = useSchool();
+  const {
+    schoolProfile,
+    isAdminAuthenticated,
+    adminLogout,
+    setActiveTab,
+    setActiveSession,
+    setActiveTerm
+  } = useSchool();
 
   const handleLogout = () => {
     adminLogout();
@@ -41,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center gap-3 min-w-0">
         <button
           onClick={onToggleMobileMenu}
-          className="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none"
+          className="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none cursor-pointer"
           aria-label="Open Navigation"
         >
           <Menu className="w-5 h-5" />
@@ -65,16 +73,39 @@ export const Header: React.FC<HeaderProps> = ({
 
           <div className="h-6 w-px bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
 
-          {/* School Name & Current Academic Session/Term */}
+          {/* School Name & Working Academic Session/Term Selector */}
           <div className="min-w-0">
             <h2 className="font-bold text-xs sm:text-sm text-slate-800 dark:text-white truncate max-w-[180px] sm:max-w-xs md:max-w-md">
               {schoolProfile.name || 'Universal School Management System'}
             </h2>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate flex items-center gap-1.5">
-              <span>{schoolProfile.session}</span>
-              <span className="text-slate-300 dark:text-slate-600">&bull;</span>
-              <span className="font-semibold text-blue-600 dark:text-blue-400">{schoolProfile.currentTerm}</span>
-            </p>
+            <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate flex items-center gap-1.5 mt-0.5">
+              <div className="inline-flex items-center gap-1 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/60 rounded px-1.5 py-0.5">
+                <Calendar className="w-3 h-3 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                <select
+                  value={schoolProfile.session}
+                  onChange={(e) => setActiveSession(e.target.value)}
+                  className="bg-transparent font-bold text-blue-700 dark:text-blue-300 text-[11px] focus:outline-none cursor-pointer pr-1"
+                  title="Select Working Academic Session (2024/2025 to 2050/2051)"
+                >
+                  {ACADEMIC_SESSIONS.map((sess) => (
+                    <option key={sess} value={sess} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+                      {sess} Session
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <span className="text-slate-300 dark:text-slate-600 hidden sm:inline">&bull;</span>
+              <select
+                value={schoolProfile.currentTerm}
+                onChange={(e) => setActiveTerm(e.target.value as TermType)}
+                className="hidden sm:inline-block bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold rounded px-1.5 py-0.5 text-[11px] border border-slate-200 dark:border-slate-700 focus:outline-none cursor-pointer"
+                title="Select Current Term"
+              >
+                <option value="1st Term">1st Term</option>
+                <option value="2nd Term">2nd Term</option>
+                <option value="3rd Term">3rd Term</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

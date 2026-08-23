@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useSchool } from '../context/SchoolContext';
-import { SchoolProfile, ClassInfo, AdminConfig, TermType } from '../types';
+import { SchoolProfile, ClassInfo, AdminConfig, TermType, ACADEMIC_SESSIONS } from '../types';
 import {
   Settings,
   Building,
@@ -411,13 +411,17 @@ export const SettingsView: React.FC = () => {
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                 Active Academic Session *
               </label>
-              <input
-                type="text"
+              <select
                 value={formData.session}
                 onChange={(e) => handleInputChange('session', e.target.value)}
-                placeholder="e.g. 2024/2025"
-                className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white font-bold text-xs"
-              />
+                className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              >
+                {ACADEMIC_SESSIONS.map((sess) => (
+                  <option key={sess} value={sess}>
+                    {sess} Academic Session
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>

@@ -68,6 +68,10 @@ interface SchoolContextType {
   deleteTimetable: (id: string) => void;
   generateDefaultTimetable: (className: string, session: string, term: TermType) => ClassTimetable;
 
+  // Session & Term Switchers
+  setActiveSession: (session: string) => void;
+  setActiveTerm: (term: TermType) => void;
+
   // Admin Security Operations
   isAdminAuthenticated: boolean;
   adminLogin: (pin: string, username?: string) => boolean;
@@ -299,6 +303,14 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   // Profile operations
   const updateSchoolProfile = (profile: Partial<SchoolProfile>) => {
     setSchoolProfile(prev => ({ ...prev, ...profile }));
+  };
+
+  const setActiveSession = (session: string) => {
+    setSchoolProfile(prev => ({ ...prev, session }));
+  };
+
+  const setActiveTerm = (currentTerm: TermType) => {
+    setSchoolProfile(prev => ({ ...prev, currentTerm }));
   };
 
   // Class operations
@@ -666,6 +678,8 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         getTimetable,
         deleteTimetable,
         generateDefaultTimetable,
+        setActiveSession,
+        setActiveTerm,
         isAdminAuthenticated,
         adminLogin,
         adminLogout,
