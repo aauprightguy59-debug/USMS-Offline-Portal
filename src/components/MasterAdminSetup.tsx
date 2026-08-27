@@ -30,16 +30,16 @@ export const MasterAdminSetup: React.FC = () => {
     <div
       className="relative min-h-screen overflow-hidden bg-[#dfe3e8] p-4 text-slate-100"
       style={{
-        backgroundImage: `url(${schoolSetupBackground})`,
+        backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.12)), url(${schoolSetupBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="absolute inset-0 bg-slate-950/10" />
+      <div className="absolute inset-0 bg-slate-950/0" />
 
       <div className="relative z-10 flex min-h-screen items-center justify-center">
-        <form onSubmit={handleSubmit} className="w-full max-w-lg rounded-[28px] border border-slate-700/80 bg-[#3c4d5d]/90 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.25)] backdrop-blur-sm sm:p-8">
+        <form onSubmit={handleSubmit} className="w-full max-w-lg rounded-[28px] border border-slate-700/80 bg-[#3c4d5d]/75 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.25)] backdrop-blur-[1px] sm:p-8">
           <div className="text-center border-b border-slate-800 pb-5 mb-5">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-blue-900 flex items-center justify-center p-3 mb-3 ring-2 ring-blue-400/30">
               <USMSLogo className="w-10 h-10 text-white" />
