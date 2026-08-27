@@ -37,6 +37,8 @@ export const StaffModal: React.FC<StaffModalProps> = ({
   const [accountNumber, setAccountNumber] = useState('');
   const [accountName, setAccountName] = useState('');
   const [status, setStatus] = useState<'Active' | 'On Leave' | 'Terminated'>('Active');
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPin, setLoginPin] = useState('');
 
   useEffect(() => {
     if (staffToEdit) {
@@ -55,6 +57,8 @@ export const StaffModal: React.FC<StaffModalProps> = ({
       setAccountNumber(staffToEdit.accountNumber);
       setAccountName(staffToEdit.accountName);
       setStatus(staffToEdit.status);
+      setLoginUsername(staffToEdit.loginUsername || '');
+      setLoginPin(staffToEdit.loginPin || '');
     } else {
       setFullName('');
       setRole('Class Teacher');
@@ -77,6 +81,8 @@ export const StaffModal: React.FC<StaffModalProps> = ({
       setAccountNumber('');
       setAccountName('');
       setStatus('Active');
+      setLoginUsername('');
+      setLoginPin('');
     }
   }, [staffToEdit, isOpen, classes]);
 
@@ -133,7 +139,9 @@ export const StaffModal: React.FC<StaffModalProps> = ({
       bankName,
       accountNumber: accountNumber.trim(),
       accountName: accountName.trim() || fullName.trim(),
-      status
+      status,
+      loginUsername: loginUsername.trim() || undefined,
+      loginPin: loginPin.trim() || undefined
     };
 
     if (staffToEdit) {
@@ -276,6 +284,18 @@ export const StaffModal: React.FC<StaffModalProps> = ({
                   className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white"
                 />
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl border border-blue-200 dark:border-blue-900 bg-blue-50/50 dark:bg-blue-950/20 p-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Portal Username</label>
+                <input type="text" value={loginUsername} onChange={(e) => setLoginUsername(e.target.value)} placeholder="Optional staff login username" className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white" />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Portal PIN</label>
+                <input type="password" value={loginPin} onChange={(e) => setLoginPin(e.target.value)} placeholder="Optional staff login PIN" className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white" />
+              </div>
+              <p className="sm:col-span-2 text-[11px] text-blue-700 dark:text-blue-300">Create credentials here to let this active staff member sign in. Class Teacher and Subject Teacher accounts receive teacher access.</p>
             </div>
           </div>
 

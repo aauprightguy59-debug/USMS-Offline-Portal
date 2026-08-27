@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SchoolProvider, useSchool } from './context/SchoolContext';
 import { MasterAdminLogin } from './components/MasterAdminLogin';
+import { MasterAdminSetup } from './components/MasterAdminSetup';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -24,7 +25,7 @@ import { AdminAuthModal } from './components/AdminAuthModal';
 import { Student, Staff, PaymentVoucher } from './types';
 
 const MainApp: React.FC = () => {
-  const { exportDatabaseJSON, isAdminAuthenticated, adminLogout, activeTab, setActiveTab } = useSchool();
+  const { schoolProfile, exportDatabaseJSON, isAdminAuthenticated, currentUser, activeTab, setActiveTab } = useSchool();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Admin Security Auth Modal
@@ -47,6 +48,10 @@ const MainApp: React.FC = () => {
   const [activePrintVoucher, setActivePrintVoucher] = useState<PaymentVoucher | null>(null);
 
   // If administrator is not authenticated, require Master Administrator Login before accessing USMS
+  if (!schoolProfile.adminConfig || !schoolProfile.isConfigured) {
+    return <MasterAdminSetup />;
+  }
+
   if (!isAdminAuthenticated) {
     return <MasterAdminLogin onLoginSuccess={() => setActiveTab('dashboard')} />;
   }
@@ -64,6 +69,7 @@ const MainApp: React.FC = () => {
 
   // Staff handlers
   const handleOpenStaffModal = (staff?: Staff) => {
+    if (currentUser?.role !== 'master') return;
     setStaffToEdit(staff || null);
     setIsStaffModalOpen(true);
   };

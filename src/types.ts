@@ -25,11 +25,20 @@ export interface AssessmentWeights {
 }
 
 export interface AdminConfig {
-  username: string; // default "admin"
-  pin: string; // default "1234"
+  username: string;
+  pin: string;
   securityQuestion?: string;
   securityAnswer?: string;
   isPinSet?: boolean;
+}
+
+export type UserRole = 'master' | 'teacher' | 'admin';
+
+export interface UserSession {
+  username: string;
+  displayName: string;
+  role: UserRole;
+  staffId?: string;
 }
 
 export interface SchoolProfile {
@@ -97,6 +106,8 @@ export interface Staff {
   accountNumber: string;
   accountName: string;
   status: 'Active' | 'On Leave' | 'Terminated';
+  loginUsername?: string;
+  loginPin?: string;
 }
 
 export interface PaymentVoucher {

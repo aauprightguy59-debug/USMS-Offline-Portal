@@ -10,6 +10,8 @@ import {
   GradeConfig,
   TermType,
   AdminConfig,
+  UserRole,
+  UserSession,
   ClassTimetable,
   TimetableSlot,
   TimetablePeriod
@@ -74,6 +76,7 @@ interface SchoolContextType {
 
   // Admin Security Operations
   isAdminAuthenticated: boolean;
+  currentUser: UserSession | null;
   adminLogin: (pin: string, username?: string) => boolean;
   adminLogout: () => void;
   updateAdminCredentials: (credentials: Partial<AdminConfig>) => void;
@@ -114,6 +117,14 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return false;
     }
   });
+  const [currentUser, setCurrentUser] = useState<UserSession | null>(() => {
+    try {
+      const saved = sessionStorage.getItem('usms_current_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
 
   // Load from local storage or clean defaults
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile>(() => {
@@ -122,10 +133,11 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       if (saved) {
         const parsed = JSON.parse(saved);
         if (!parsed.adminConfig) {
-          parsed.adminConfig = DEFAULT_SCHOOL_PROFILE.adminConfig;
-        } else if ((parsed.adminConfig.pin === '1234' || parsed.adminConfig.pin === '12345678' || !parsed.adminConfig.pin) && !parsed.adminConfig.isPinSet) {
-          parsed.adminConfig.username = 'admin01';
-          parsed.adminConfig.pin = '12345678Admin';
+          parsed.isConfigured = false;
+        } else if (!parsed.adminConfig.isPinSet &&
+          ['1234', '12345678', '12345678Admin'].includes(parsed.adminConfig.pin)) {
+          delete parsed.adminConfig;
+          parsed.isConfigured = false;
         }
         return parsed;
       }
@@ -265,16 +277,37 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   // Admin Auth Methods
   const adminLogin = (pin: string, username?: string): boolean => {
-    const configuredPin = schoolProfile.adminConfig?.pin || '12345678Admin';
-    const configuredUsername = schoolProfile.adminConfig?.username || 'admin01';
+    const configuredPin = schoolProfile.adminConfig?.pin;
+    const configuredUsername = schoolProfile.adminConfig?.username;
+
+    if (!configuredPin || !configuredUsername) return false;
 
     const isPinCorrect = pin.trim() === configuredPin.trim();
     const isUserCorrect = !username || username.trim().toLowerCase() === configuredUsername.trim().toLowerCase();
 
     if (isPinCorrect && isUserCorrect) {
+      const user: UserSession = { username: configuredUsername, displayName: 'Master Administrator', role: 'master' };
       setIsAdminAuthenticated(true);
+      setCurrentUser(user);
       try {
         sessionStorage.setItem(STORAGE_KEYS.ADMIN_AUTH, 'true');
+        sessionStorage.setItem('usms_current_user', JSON.stringify(user));
+      } catch {}
+      return true;
+    }
+    const staffAccount = staff.find(member =>
+      member.status === 'Active' &&
+      member.loginUsername?.trim().toLowerCase() === username?.trim().toLowerCase() &&
+      member.loginPin?.trim() === pin.trim()
+    );
+    if (staffAccount) {
+      const role: UserRole = staffAccount.role === 'Class Teacher' || staffAccount.role === 'Subject Teacher' ? 'teacher' : 'admin';
+      const user: UserSession = { username: staffAccount.loginUsername!, displayName: staffAccount.fullName, role, staffId: staffAccount.id };
+      setIsAdminAuthenticated(true);
+      setCurrentUser(user);
+      try {
+        sessionStorage.setItem(STORAGE_KEYS.ADMIN_AUTH, 'true');
+        sessionStorage.setItem('usms_current_user', JSON.stringify(user));
       } catch {}
       return true;
     }
@@ -283,9 +316,11 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const adminLogout = () => {
     setIsAdminAuthenticated(false);
+    setCurrentUser(null);
     setActiveTab('dashboard');
     try {
       sessionStorage.removeItem(STORAGE_KEYS.ADMIN_AUTH);
+      sessionStorage.removeItem('usms_current_user');
       localStorage.removeItem('usms_admin_remember');
     } catch {}
   };
@@ -294,7 +329,7 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setSchoolProfile(prev => ({
       ...prev,
       adminConfig: {
-        ...(prev.adminConfig || { username: 'admin01', pin: '12345678Admin' }),
+        ...(prev.adminConfig || {}),
         ...credentials,
         isPinSet: true
       }
@@ -682,6 +717,7 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         setActiveSession,
         setActiveTerm,
         isAdminAuthenticated,
+        currentUser,
         adminLogin,
         adminLogout,
         updateAdminCredentials,

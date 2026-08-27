@@ -150,14 +150,7 @@ export const DEFAULT_SCHOOL_PROFILE: SchoolProfile = {
   },
   templateStyle: 'prestige',
   admissionPrefix: 'USMS',
-  isConfigured: true,
-  adminConfig: {
-    username: 'admin01',
-    pin: '12345678Admin',
-    securityQuestion: 'Master Security Verification',
-    securityAnswer: '12345678Admin',
-    isPinSet: false
-  }
+  isConfigured: false
 };
 
 // Clean Default Slate (No mock/existing data)

@@ -35,19 +35,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isOpenMobile = false,
   onCloseMobile
 }) => {
-  const { students, staff, timetables, schoolProfile, isAdminAuthenticated, adminLogout } = useSchool();
+  const { students, staff, timetables, schoolProfile, currentUser, adminLogout } = useSchool();
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'staff', label: 'Staff Records', icon: Briefcase, count: staff.length },
+    { id: 'staff', label: 'Staff Records', icon: Briefcase, count: staff.length, masterOnly: true },
     { id: 'students', label: 'Admissions', icon: Users, count: students.length },
     { id: 'timetable', label: 'Timetables', icon: Calendar, badge: 'All Terms' },
     { id: 'exams', label: 'Examination', icon: FileSpreadsheet },
     { id: 'reports', label: 'Report Cards', icon: FileText },
     { id: 'vouchers', label: 'Payment Vouchers', icon: Receipt },
     { id: 'analytics', label: 'Merit & Analytics', icon: Award },
-    { id: 'settings', label: 'System Setup', icon: Settings },
-  ];
+    { id: 'settings', label: 'System Setup', icon: Settings, masterOnly: true },
+  ].filter(item => currentUser?.role === 'master' || !item.masterOnly);
 
   const handleNavClick = (item: typeof navItems[0]) => {
     setActiveTab(item.id);
