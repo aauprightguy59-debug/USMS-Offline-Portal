@@ -152,10 +152,10 @@ export const DEFAULT_SCHOOL_PROFILE: SchoolProfile = {
   admissionPrefix: 'USMS',
   isConfigured: true,
   adminConfig: {
-    username: 'admin',
-    pin: '12345678',
+    username: 'admin01',
+    pin: '12345678Admin',
     securityQuestion: 'Master Security Verification',
-    securityAnswer: '12345678',
+    securityAnswer: '12345678Admin',
     isPinSet: false
   }
 };
