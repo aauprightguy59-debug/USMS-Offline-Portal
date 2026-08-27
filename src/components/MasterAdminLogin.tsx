@@ -22,7 +22,7 @@ interface MasterAdminLoginProps {
 export const MasterAdminLogin: React.FC<MasterAdminLoginProps> = ({ onLoginSuccess }) => {
   const { schoolProfile, adminLogin } = useSchool();
   
-  const [username, setUsername] = useState('admin');
+  const [username, setUsername] = useState(schoolProfile.adminConfig?.username || 'admin01');
   const [pin, setPin] = useState('');
   const [showPin, setShowPin] = useState(false);
   const [error, setError] = useState('');

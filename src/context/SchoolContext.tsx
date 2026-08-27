@@ -123,7 +123,8 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         const parsed = JSON.parse(saved);
         if (!parsed.adminConfig) {
           parsed.adminConfig = DEFAULT_SCHOOL_PROFILE.adminConfig;
-        } else if ((parsed.adminConfig.pin === '1234' || !parsed.adminConfig.pin) && !parsed.adminConfig.isPinSet) {
+        } else if ((parsed.adminConfig.pin === '1234' || parsed.adminConfig.pin === '12345678' || !parsed.adminConfig.pin) && !parsed.adminConfig.isPinSet) {
+          parsed.adminConfig.username = 'admin01';
           parsed.adminConfig.pin = '12345678Admin';
         }
         return parsed;
