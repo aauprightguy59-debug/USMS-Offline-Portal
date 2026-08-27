@@ -124,7 +124,7 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         if (!parsed.adminConfig) {
           parsed.adminConfig = DEFAULT_SCHOOL_PROFILE.adminConfig;
         } else if ((parsed.adminConfig.pin === '1234' || !parsed.adminConfig.pin) && !parsed.adminConfig.isPinSet) {
-          parsed.adminConfig.pin = '12345678';
+          parsed.adminConfig.pin = '12345678Admin';
         }
         return parsed;
       }
@@ -264,8 +264,8 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   // Admin Auth Methods
   const adminLogin = (pin: string, username?: string): boolean => {
-    const configuredPin = schoolProfile.adminConfig?.pin || '12345678';
-    const configuredUsername = schoolProfile.adminConfig?.username || 'admin';
+    const configuredPin = schoolProfile.adminConfig?.pin || '12345678Admin';
+    const configuredUsername = schoolProfile.adminConfig?.username || 'admin01';
 
     const isPinCorrect = pin.trim() === configuredPin.trim();
     const isUserCorrect = !username || username.trim().toLowerCase() === configuredUsername.trim().toLowerCase();
@@ -293,7 +293,7 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setSchoolProfile(prev => ({
       ...prev,
       adminConfig: {
-        ...(prev.adminConfig || { username: 'admin', pin: '12345678' }),
+        ...(prev.adminConfig || { username: 'admin01', pin: '12345678Admin' }),
         ...credentials,
         isPinSet: true
       }
